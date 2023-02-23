@@ -8,8 +8,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.pineda.adriana.android.contacts.ContactAdapter;
+import com.pineda.adriana.android.contacts_with_header.ContactHeaderAdapter;
 import com.pineda.adriana.android.databinding.FragmentSecondBinding;
+
+import java.util.List;
 
 public class SecondFragment extends Fragment {
 
@@ -22,8 +27,14 @@ public class SecondFragment extends Fragment {
     ) {
 
         binding = FragmentSecondBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(container.getContext(), LinearLayoutManager.VERTICAL, false));
 
+        List<Contact> contacts = Contact.getMeaningfulNamedContacts();
+//        ContactAdapter adapter = new ContactAdapter(contacts);
+        ContactHeaderAdapter adapter = new ContactHeaderAdapter(contacts);
+        binding.recyclerView.setAdapter(adapter);
+
+        return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
