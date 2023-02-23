@@ -11,6 +11,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.pineda.adriana.android.contacts.ContactAdapter;
+import com.pineda.adriana.android.contacts_with_delete_button.ContactDeleteAdapter;
 import com.pineda.adriana.android.contacts_with_header.ContactHeaderAdapter;
 import com.pineda.adriana.android.databinding.FragmentSecondBinding;
 
@@ -29,9 +30,11 @@ public class SecondFragment extends Fragment {
         binding = FragmentSecondBinding.inflate(inflater, container, false);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(container.getContext(), LinearLayoutManager.VERTICAL, false));
 
+//        List<Contact> contacts = Contact.createContactsList(100);
         List<Contact> contacts = Contact.getMeaningfulNamedContacts();
 //        ContactAdapter adapter = new ContactAdapter(contacts);
-        ContactHeaderAdapter adapter = new ContactHeaderAdapter(contacts);
+//        ContactHeaderAdapter adapter = new ContactHeaderAdapter(contacts);
+        ContactDeleteAdapter adapter = new ContactDeleteAdapter(contacts);
         binding.recyclerView.setAdapter(adapter);
 
         return binding.getRoot();
